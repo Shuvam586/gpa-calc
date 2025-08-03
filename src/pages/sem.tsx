@@ -23,7 +23,7 @@ function Sem() {
         e.preventDefault();
         // console.log("crazzyyyyy");
         // console.log(selections);
-        const credToAc = {
+        const credToAc: Record<string, number> = {
             "1cred": 1,
             "1_5cred": 1.5,
             "2cred": 2,
@@ -32,7 +32,7 @@ function Sem() {
             "5cred": 5,
             "20cred": 20,
         }
-        const gradeToAc = {
+        const gradeToAc: Record<string, number> = {
             "sgrade": 10,
             "agrade": 9,
             "bgrade": 8,
@@ -46,7 +46,7 @@ function Sem() {
         var normalCreds = 0;
 
         for(const [key, value] of Object.entries(selections)) {
-            // console.log(item);
+            console.log(key);
             if (value.select1 && value.select2) {
                 weightedCreds += gradeToAc[value.select1] * credToAc[value.select2];
                 normalCreds += credToAc[value.select2];
