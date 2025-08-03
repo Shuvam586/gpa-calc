@@ -20,7 +20,7 @@ function Home () {
                 <Link to="/cgpa">
                     <Card className="grid place-items-center">
                         <p className="text-l font-bold">
-                            CGPA 📜3
+                            CGPA 📜
                         </p>
                     </Card>   
                 </Link>   

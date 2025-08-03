@@ -12,11 +12,11 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
-        name: 'My App',
-        short_name: 'App',
+        name: 'gpa-calc',
+        short_name: 'gpa-calc',
         start_url: '/',
         display: 'standalone',
-        background_color: '#ffffff',
+        background_color: '#000000',
         theme_color: '#0f172a', // change to match your Tailwind theme
         icons: [
           {
