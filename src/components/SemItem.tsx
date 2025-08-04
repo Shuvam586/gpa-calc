@@ -12,6 +12,7 @@ export function SemItem({ index, item, onChange }: { index: number, item: { sele
                 </SelectTrigger>
                 <SelectContent>
                     <SelectGroup>
+                        <SelectItem value=" ">Grade</SelectItem>
                         <SelectItem value="sgrade">S</SelectItem>
                         <SelectItem value="agrade">A</SelectItem>
                         <SelectItem value="bgrade">B</SelectItem>
@@ -33,6 +34,7 @@ export function SemItem({ index, item, onChange }: { index: number, item: { sele
                 </SelectTrigger>
                 <SelectContent>
                     <SelectGroup>
+                        <SelectItem value=" ">Credits</SelectItem>
                         <SelectItem value="1cred">1</SelectItem>
                         <SelectItem value="1_5cred">1.5</SelectItem>
                         <SelectItem value="2cred">2</SelectItem>

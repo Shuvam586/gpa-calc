@@ -10,7 +10,7 @@ function Sem() {
     const [sgpa, setSgpa] = useState('0.0')
 
     const [selections, setSelections] = useState(
-        Array.from({ length: numItems }, () => ({ select1: "", select2: "" }))
+        Array.from({ length: numItems }, () => ({ select1: " ", select2: " " }))
     )
 
     const handleChange = (index: number, field: "select1" | "select2", value: string) => {
@@ -24,6 +24,7 @@ function Sem() {
         // console.log("crazzyyyyy");
         // console.log(selections);
         const credToAc: Record<string, number> = {
+            " ": -1,
             "1cred": 1,
             "1_5cred": 1.5,
             "2cred": 2,
@@ -33,6 +34,7 @@ function Sem() {
             "20cred": 20,
         }
         const gradeToAc: Record<string, number> = {
+            " ": -1,
             "sgrade": 10,
             "agrade": 9,
             "bgrade": 8,
@@ -48,8 +50,10 @@ function Sem() {
         for(const [key, value] of Object.entries(selections)) {
             console.log(key);
             if (value.select1 && value.select2) {
-                weightedCreds += gradeToAc[value.select1] * credToAc[value.select2];
-                normalCreds += credToAc[value.select2];
+                if (!(gradeToAc[value.select1]==-1 || credToAc[value.select1]==-1)) {
+                    weightedCreds += gradeToAc[value.select1] * credToAc[value.select2];
+                    normalCreds += credToAc[value.select2];
+                }
             };
         }
 
@@ -59,7 +63,7 @@ function Sem() {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="w-screen h-screen p-6 flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="w-screen h-[90vh] p-6 flex flex-col gap-4">
             <div className="h-full grid place-items-center">
                 <p className="text-3xl font-bold">semester gpa 🍕🍕</p>
             </div>
