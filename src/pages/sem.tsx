@@ -78,7 +78,7 @@ function Sem() {
 
             <Button type="submit" className="w-full">Look Up</Button>
 
-            <Card className="h-full grid place-items-center">
+            <Card className="h-9/10 grid place-items-center">
                 <CardContent className="grid place-items-center">
                     <p className="text-7xl font-semibold">{sgpa}</p>
                 </CardContent>
