@@ -63,7 +63,7 @@ function Sem() {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="w-screen h-[90vh] p-6 flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="w-screen h-[90vh] max-w-[600px] mx-auto p-6 flex flex-col gap-4">
             <div className="h-full grid place-items-center">
                 <p className="text-3xl font-bold">semester gpa 🍕🍕</p>
             </div>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Home () {
     return (
-        <div className="w-screen h-[90vh] p-6">
+        <div className="w-screen h-[90vh] p-6 max-w-[600px] mx-auto">
             <div className="h-1/5 grid place-items-center">
                 <p className="text-3xl font-bold">cgpa calc?! 📈📈</p>
             </div>
