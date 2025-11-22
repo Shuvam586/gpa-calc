@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 
 import { useState } from "react";
 
-function Cg() {
+function GuestCg() {
     const numItems = 8
 
     const [cgpa, setCgpa] = useState('0.0')
@@ -63,4 +63,4 @@ function Cg() {
     )
 }
 
-export default Cg;
+export default GuestCg;

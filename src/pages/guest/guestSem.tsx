@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 
 import { useState } from "react";
 
-function Sem() {
+function GuestSem() {
     const numItems = 10
 
     const [sgpa, setSgpa] = useState('0.0')
@@ -88,4 +88,4 @@ function Sem() {
     )
 }
 
-export default Sem;
+export default GuestSem;
