@@ -33,6 +33,18 @@ type courseInfo = {
     grade: string,
 }
 
+const gradeToAc: Record<string, number> = {
+    " ": -1,
+    "S": 10,
+    "A": 9,
+    "B": 8,
+    "C": 7,
+    "D": 6,
+    "E": 5,
+    "F": 0,
+    "N": 0,
+} 
+
 function Home() {
     const [name, setName] = useState<string | null>(null);
     const [newSem, setNewSem] = useState<semInfo>({id: "", name:"", created_at:"", user_id:""})
@@ -111,7 +123,7 @@ function Home() {
     
 
     return (
-        <div className="w-screen h-[90vh] py-6 max-w-[1200px] mx-auto overflow-hidden">
+        <div className="w-screen h-[98vh] py-6 max-w-[1200px] mx-auto overflow-scroll">
             <div className="flex justify-between mx-6">
                 <p className="text-xl font-bold">hello {name} 😋😋</p>
                 <Button variant="outline" onClick={handleLogout}>
@@ -119,14 +131,17 @@ function Home() {
                 </Button>
             </div>
 
-            <CgpaCard cg="9.30" creds={String(courseItems.reduce((sum, course) => sum+Number(course.credits), 0))} />
+            <CgpaCard
+                cg={ String( courseItems.filter(c => c.credits!="" && c.credits!=" " && c.grade!="" && c.grade!=" ").reduce((sum, course) => sum+(Number(course.credits)*gradeToAc[course.grade]), 0) / courseItems.filter(c => c.credits!="" && c.grade!="").reduce((sum, course) => sum+Number(course.credits), 0) ) }
+                creds={String(courseItems.filter(c => c.credits!="" && c.credits!=" " && c.grade!="" && c.grade!=" ").reduce((sum, course) => sum+Number(course.credits), 0))} 
+            />
 
             <Tabs defaultValue="0" >
                 <TabsList className="overflow-scroll bg-background p-0 rounded-none w-full h-1/6 my-6 mb-5 grid grid-cols-[4fr_1fr]">
                     <div className="flex overflow-scroll">
 
                         {
-                            semItems.sort((a, b) => a.created_at.localeCompare(b.created_at)).map((s, index) => (
+                            semItems.sort((a, b) => a.created_at.localeCompare(b.created_at)).reverse().map((s, index) => (
                                 <TabsTrigger
                                     className="w-full min-w-[120px] rounded-none p-4 pt-2 border-0 border-b-[2px] !bg-background data-[state=active]:!border-neutral-400"
                                     value={index.toLocaleString()} id={s.id} key={s.id}>
@@ -168,7 +183,7 @@ function Home() {
                 </TabsList>
 
                 {
-                    semItems.sort((a, b) => a.created_at.localeCompare(b.created_at)).map((s, index) => (
+                    semItems.sort((a, b) => a.created_at.localeCompare(b.created_at)).reverse().map((s, index) => (
                         <TabsContent className="mx-6 flex flex-col justify-center gap-4" key={s.id} value={index.toLocaleString()}>
                             
                             <Dialog>
@@ -176,8 +191,9 @@ function Home() {
                                     <DialogTrigger asChild>
                                         <div className="w-full" onClick={() => setNewSem(prev => ({...prev, id: s.id, name: s.name}))}>
                                             <SgpaCard 
-                                            name={s.name} cg="9.20"
-                                            creds={String(courseItems.filter(c => c.sem==s.id).reduce((sum, course) => sum+Number(course.credits), 0))}
+                                            name={s.name} 
+                                            cg={ String( 0+courseItems.filter(c => c.sem==s.id).filter(c => c.credits!="" && c.credits!=" " && c.grade!="" && c.grade!=" ").reduce((sum, course) => sum+(Number(course.credits)*gradeToAc[course.grade]), 0) / Math.max(courseItems.filter(c => c.sem==s.id).filter(c => c.credits!="" && c.grade!="").reduce((sum, course) => sum+Number(course.credits), 0), 1) ) }
+                                            creds={String(courseItems.filter(c => c.sem==s.id).filter(c => c.credits!="" && c.credits!=" " && c.grade!="" && c.grade!=" ").reduce((sum, course) => sum+Number(course.credits), 0))}
                                             />
                                         </div>
                                     </DialogTrigger>
@@ -244,7 +260,7 @@ function Home() {
                                                 <DialogTrigger asChild>
                                                     <Card className="p-3 grid grid-cols-[70px_1fr_70px] gap-5 w-full cursor-pointer" key={c.id} onClick={() => setNewCourse(prev => ({...prev, id: c.id, name: c.name, credits: c.credits, grade: c.grade}))}>
                                                         <div className="cl-item-credits grid place-items-center pb-1">
-                                                            <p className="text-2xl font-medium">{c.credits}</p>
+                                                            <p className="text-2xl font-medium">{(c.credits!=" ")&&(c.credits!="") ? c.credits : "-"}</p>
                                                             <p className="text-xs">credits</p>
                                                         </div>
                                                         <div className="cl-item-name text-sm flex items-center">
@@ -253,7 +269,7 @@ function Home() {
                                                             </p>
                                                         </div>
                                                         <div className="cli-item-grade grid place-items-center">
-                                                            <p className="text-2xl font-medium">{c.grade}</p>
+                                                            <p className="text-2xl font-medium">{(c.grade!=" ")&&(c.grade!="") ? c.grade : "-"}</p>
                                                             <p className="text-xs">grade</p>
                                                         </div>
                                                     </Card> 
