@@ -238,7 +238,7 @@ function Home() {
                                 <p className="text-sm mt-2 font-medium">Courses</p>
                                 
                                 {
-                                    courseItems.filter(c => c.sem==s.id).sort((a, b) => a.created_at.localeCompare(b.created_at)).map((c, index) => (
+                                    courseItems.filter(c => c.sem==s.id).sort((a, b) => a.created_at.localeCompare(b.created_at)).map((c) => (
                                         <Dialog>
                                             <form className="w-full grid place-items-end">
                                                 <DialogTrigger asChild>
