@@ -125,14 +125,14 @@ function Home() {
     return (
         <div className="w-screen h-[98vh] py-6 max-w-[1200px] mx-auto overflow-scroll">
             <div className="flex justify-between mx-6">
-                <p className="text-xl font-bold">hello {name} 😋😋</p>
+                <p className="text-xl font-bold">hello {name?.toLowerCase()} 👋👋</p>
                 <Button variant="outline" onClick={handleLogout}>
                     <LogOut />
                 </Button>
             </div>
 
             <CgpaCard
-                cg={ String( courseItems.filter(c => c.credits!="" && c.credits!=" " && c.grade!="" && c.grade!=" ").reduce((sum, course) => sum+(Number(course.credits)*gradeToAc[course.grade]), 0) / courseItems.filter(c => c.credits!="" && c.grade!="").reduce((sum, course) => sum+Number(course.credits), 0) ) }
+                cg={ String(( courseItems.filter(c => c.credits!="" && c.credits!=" " && c.grade!="" && c.grade!=" ").reduce((sum, course) => sum+(Number(course.credits)*gradeToAc[course.grade]), 0) / Math.max(courseItems.filter(c => c.credits!="" && c.grade!="").reduce((sum, course) => sum+Number(course.credits), 0), 1) ).toFixed(2)) }
                 creds={String(courseItems.filter(c => c.credits!="" && c.credits!=" " && c.grade!="" && c.grade!=" ").reduce((sum, course) => sum+Number(course.credits), 0))} 
             />
 
@@ -192,7 +192,7 @@ function Home() {
                                         <div className="w-full" onClick={() => setNewSem(prev => ({...prev, id: s.id, name: s.name}))}>
                                             <SgpaCard 
                                             name={s.name} 
-                                            cg={ String( 0+courseItems.filter(c => c.sem==s.id).filter(c => c.credits!="" && c.credits!=" " && c.grade!="" && c.grade!=" ").reduce((sum, course) => sum+(Number(course.credits)*gradeToAc[course.grade]), 0) / Math.max(courseItems.filter(c => c.sem==s.id).filter(c => c.credits!="" && c.grade!="").reduce((sum, course) => sum+Number(course.credits), 0), 1) ) }
+                                            cg={ String( (0+courseItems.filter(c => c.sem==s.id).filter(c => c.credits!="" && c.credits!=" " && c.grade!="" && c.grade!=" ").reduce((sum, course) => sum+(Number(course.credits)*gradeToAc[course.grade]), 0) / Math.max(courseItems.filter(c => c.sem==s.id).filter(c => c.credits!="" && c.grade!="").reduce((sum, course) => sum+Number(course.credits), 0), 1)).toFixed(2) ) }
                                             creds={String(courseItems.filter(c => c.sem==s.id).filter(c => c.credits!="" && c.credits!=" " && c.grade!="" && c.grade!=" ").reduce((sum, course) => sum+Number(course.credits), 0))}
                                             />
                                         </div>
