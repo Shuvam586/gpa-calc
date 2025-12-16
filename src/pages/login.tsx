@@ -20,7 +20,7 @@ function Login() {
 
     return (
         <div className="w-full h-[90vh] flex justify-start flex-col mx-auto p-6 max-w-[600px]">
-            <p className="text-3xl font-bold h-1/5 grid place-items-center">login 🍜🍜</p>
+            <p className="text-3xl font-bold h-1/5 grid place-items-center">login 🍜</p>
             <div className="auth-buttons flex flex-col gap-6">
                 <Card className="cursor-pointer">
                     <button onClick={() => loginWithProvider("google")}>

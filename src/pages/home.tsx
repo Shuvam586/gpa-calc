@@ -125,7 +125,7 @@ function Home() {
     return (
         <div className="w-screen h-[98vh] py-6 max-w-[1200px] mx-auto overflow-scroll">
             <div className="flex justify-between mx-6">
-                <p className="text-xl font-bold">hello {name?.toLowerCase()} 👋👋</p>
+                <p className="text-xl font-bold">hello {name?.toLowerCase()} 👋</p>
                 <Button variant="outline" onClick={handleLogout}>
                     <LogOut />
                 </Button>
